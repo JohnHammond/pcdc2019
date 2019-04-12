@@ -1,9 +1,9 @@
 Palmetto Cyber Defense Competition
 ===================================
 
-> John Hammond | 2019
+> John Hammond | April 13th, 2019
 
----------------------
+---------------
 
 This repository aims to hold code and information to be beneficial to the PCDC competition, held on April 15th, 2019.
 
