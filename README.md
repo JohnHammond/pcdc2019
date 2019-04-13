@@ -80,4 +80,4 @@ __Injects__ that include multiple files should be compressed into a ZIP file, wi
 Additional Tools
 =============
 
-[https://github.com/meitar/awesome-cybersecurity-blueteam](https://github.com/meitar/awesome-cybersecurity-blueteam)
+[https://github.com/meitar/awesome-cybersecurity-blueteam](https://github.com/meitar/awesome-cybersecurity-blueteam) and [https://github.com/Techryptic/Cyber-Defense-Competition-Scripts](https://github.com/Techryptic/Cyber-Defense-Competition-Scripts)
