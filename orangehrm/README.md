@@ -23,6 +23,61 @@ Notes from: [https://www.cvedetails.com/vulnerability-list/vendor_id-6180/Orange
 * [	](https://www.exploit-db.com/exploits/15232)
 
 
+Upgrade OrangeHRM
 -----------------
 
-I have not yet made effort to find means to harden or secure OrangeHRM.
+[https://docs.bitnami.com/bch/apps/orangehrm/administration/upgrade/](https://docs.bitnami.com/bch/apps/orangehrm/administration/upgrade/)
+
+* Back up your current OrangeHRM database.
+
+```
+cd /opt/bitnami/mysql
+bin/mysql -u root -p
+```
+
+* Create a new database and assign permissions to the user of the orangehrm database.
+
+```
+mysql> CREATE DATABASE bitnami_orangehrm_backup;
+mysql> GRANT ALL PRIVILEGES ON bitnami_orangehrm_backup.* TO 'bn_orangehrm'@'localhost' IDENTIFIED BY 'PASSWORD';
+mysql> exit;
+```
+
+* Create OrangeHRM tables in the new database:
+
+```
+bin/mysqldump -u root -p bitnami_orangehrm > /home/bitnami/ohrm_backup.sql
+bin/mysql -u root -p -o bitnami_orangehrm_backup < /home/bitnami/ohrm_backup.sql
+```
+
+* Remove the actual content of the /opt/bitnami/apps/orangehrm/htdocs directory and uncompress the new version of OrangeHRM to the same location.
+
+```
+cd /opt/bitnami/apps/orangehrm
+sudo rm -rf htdocs/
+sudo unzip orangehrm-version.zip
+mv orangehrm-version/ htdocs/
+```
+
+* Change the ownership of the files and their permissions:
+
+```
+chown -R bitnami:daemon /opt/bitnami/apps/orangehrm/htdocs/
+chmod -R 775 upgrader/ lib/ symfony/
+```
+
+* Launch the upgrade wizard. Access it in the web browser by navigating to http://SERVER-IP/upgrader/web/index.php:
+
+![https://docs.bitnami.com/images/img/apps/orangehrm/orangehrm-upgrade.png](https://docs.bitnami.com/images/img/apps/orangehrm/orangehrm-upgrade.png)
+
+* Complete the fields as is shown in the image. The password is the same that you put in the “GRANT ALL PRIVILEGES” command. Follow the remaining instructions.
+
+* Clean up and remove the old database and the backup file:
+
+```
+/opt/bitnami/mysql/bin/mysql -u root -p
+mysql> DROP DATABASE bitnami_orangehrm_backup;
+mysql> exit;
+rm /home/bitnami/ohrm_backup.sql
+```
+
