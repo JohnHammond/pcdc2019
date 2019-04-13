@@ -3,6 +3,8 @@ Windows Toolkit
 
 Do not forget to download and install EMET!
 
+Some great tools here: [https://github.com/securitywithoutborders/hardentools](https://github.com/securitywithoutborders/hardentools)
+
 And check the PowerShell history file:
 
 ```

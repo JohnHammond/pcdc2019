@@ -77,3 +77,7 @@ __Injects__ that include multiple files should be compressed into a ZIP file, wi
 <teamNumber>_<injectNumber>_<injectTitle>
 ```
 
+Additional Tools
+=============
+
+[https://github.com/meitar/awesome-cybersecurity-blueteam](https://github.com/meitar/awesome-cybersecurity-blueteam)
